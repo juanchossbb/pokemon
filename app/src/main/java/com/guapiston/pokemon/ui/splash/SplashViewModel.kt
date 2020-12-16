@@ -1,9 +1,7 @@
 package com.guapiston.pokemon.ui.splash
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.guapiston.pokemon.data.datasource.PokemonDataSource
 import com.guapiston.pokemon.data.model.PokemonListResponse
 import com.guapiston.pokemon.utils.provideRetrofitService
 import kotlinx.coroutines.CoroutineScope
@@ -16,7 +14,7 @@ class SplashViewModel : ViewModel(){
 
     fun loadInitialPokemon() {
         CoroutineScope(Dispatchers.IO).launch {
-            service.getAvailablePokemon(1, 20).subscribe({
+            service.getAvailablePokemon(0, 20).subscribe({
                 pokemonLiveData.postValue(it)
             }, { it.printStackTrace() })
         }

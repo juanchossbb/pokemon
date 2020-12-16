@@ -19,7 +19,6 @@ class PokemonListResponse {
         lateinit var url : String
 
         companion object {
-            private val gson by lazy { Gson() }
             val DIFF_CALLBACK: DiffUtil.ItemCallback<PokemonListItem> =
                 object : DiffUtil.ItemCallback<PokemonListItem>() {
                     override fun areItemsTheSame(oldItem: PokemonListItem, newItem: PokemonListItem): Boolean {
@@ -27,7 +26,7 @@ class PokemonListResponse {
                     }
 
                     override fun areContentsTheSame(oldItem: PokemonListItem, newItem: PokemonListItem): Boolean {
-                        return gson.toJson(oldItem) == gson.toJson(newItem)
+                        return oldItem.name == newItem.name
                     }
                 }
         }

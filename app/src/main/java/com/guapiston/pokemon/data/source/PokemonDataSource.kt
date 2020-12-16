@@ -1,9 +1,7 @@
-package com.guapiston.pokemon.data.datasource
+package com.guapiston.pokemon.data.source
 
 import androidx.paging.PositionalDataSource
 import com.guapiston.pokemon.PokemonApp
-import com.guapiston.pokemon.data.RetrofitFactory
-import com.guapiston.pokemon.data.database.AppDatabase
 import com.guapiston.pokemon.data.model.PokemonListResponse
 import com.guapiston.pokemon.utils.provideAppDatabase
 import com.guapiston.pokemon.utils.provideRetrofitService
@@ -30,7 +28,7 @@ class PokemonDataSource : PositionalDataSource<PokemonListResponse.PokemonListIt
 
         if (PokemonApp.connectedToInternet()) {
             database.pokemonDao().insertPokemonList(
-                service.getAvailablePokemon((start / count) + 1, count).doOnError {
+                service.getAvailablePokemon(start, count).doOnError {
                     it.printStackTrace()
                 }.blockingFirst().results
             )

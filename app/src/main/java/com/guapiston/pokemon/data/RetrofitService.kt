@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface RetrofitService{
 
     @GET("pokemon")
-    fun getAvailablePokemon(@Query("page") page: Int,
+    fun getAvailablePokemon(@Query("offset") offset: Int,
                             @Query("limit") limit: Int) : Observable<PokemonListResponse>
 }
