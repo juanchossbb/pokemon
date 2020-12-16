@@ -72,7 +72,7 @@ class PokemonDetailsFragment : Fragment(){
         pbSpAttack.progress = details.stats[3].baseStat
         pbSpDefense.progress = details.stats[4].baseStat
         pbSpeed.progress = details.stats[5].baseStat
-        rvSkills.adapter = PokemonSkillsAdapter(details.stats)
+        rvSkills.adapter = PokemonSkillsAdapter(details.abilities)
         pbLoading.visibility = View.GONE
     }
 

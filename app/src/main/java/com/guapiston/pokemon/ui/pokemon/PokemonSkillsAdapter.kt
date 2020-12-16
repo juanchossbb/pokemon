@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.guapiston.pokemon.R
 import com.guapiston.pokemon.data.model.PokemonDetailResponse
 
-class PokemonSkillsAdapter(val list : List<PokemonDetailResponse.Stat>) : RecyclerView.Adapter<PokemonSkillsAdapter.PokemonSkillsViewHolder>(){
+class PokemonSkillsAdapter(val list : List<PokemonDetailResponse.Ability>) : RecyclerView.Adapter<PokemonSkillsAdapter.PokemonSkillsViewHolder>(){
 
 
     class PokemonSkillsViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val tvSkillName = view.findViewById<TextView>(R.id.tv_description_skill_title)
-        val tvSkillValue = view.findViewById<TextView>(R.id.tv_description_skill_value)
-        val pbSkill = view.findViewById<ProgressBar>(R.id.pb_description_skill)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonSkillsViewHolder {
@@ -25,9 +23,7 @@ class PokemonSkillsAdapter(val list : List<PokemonDetailResponse.Stat>) : Recycl
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: PokemonSkillsViewHolder, position: Int) {
-        val stat = list[position]
-        holder.tvSkillName.text = stat.stat.name
-        holder.tvSkillValue.text = stat.baseStat.toString()
-        holder.pbSkill.progress = stat.baseStat
+        val ability = list[position]
+        holder.tvSkillName.text = ability.ability.name
     }
 }

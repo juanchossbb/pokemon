@@ -8,6 +8,7 @@ class PokemonDetailResponse {
     var experience : Int = 0
     var height : Int = 0
     lateinit var stats : List<Stat>
+    lateinit var abilities : List<Ability>
 
     class Stat{
         @SerializedName("base_stat")
