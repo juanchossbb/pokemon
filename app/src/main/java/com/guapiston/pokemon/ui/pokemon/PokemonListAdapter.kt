@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.guapiston.pokemon.R
 import com.guapiston.pokemon.data.model.PokemonListResponse
 
-class PokemonListAdapter : PagedListAdapter<PokemonListResponse.PokemonListItem,PokemonListAdapter.PokemonListViewHolder>(PokemonListResponse.PokemonListItem.DIFF_CALLBACK){
+class PokemonListAdapter(val listener: PokemonListClickListener) : PagedListAdapter<PokemonListResponse.PokemonListItem,PokemonListAdapter.PokemonListViewHolder>(PokemonListResponse.PokemonListItem.DIFF_CALLBACK){
 
     class PokemonListViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val tvPokemonName = view.findViewById<TextView>(R.id.tv_pokemon_name)
@@ -21,5 +21,13 @@ class PokemonListAdapter : PagedListAdapter<PokemonListResponse.PokemonListItem,
 
     override fun onBindViewHolder(holder: PokemonListViewHolder, position: Int) {
         holder.tvPokemonName.text = getItem(position)?.name
+        holder.itemView.tag = getItem(position)
+        holder.itemView.setOnClickListener {
+            listener.onPokemonClicked((it.tag as PokemonListResponse.PokemonListItem).url)
+        }
     }
+}
+
+interface PokemonListClickListener{
+    fun onPokemonClicked(url : String)
 }

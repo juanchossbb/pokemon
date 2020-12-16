@@ -11,10 +11,11 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.guapiston.pokemon.MainActivity
 import com.guapiston.pokemon.R
 import com.guapiston.pokemon.data.model.PokemonListResponse
 
-class PokemonListFragment : Fragment(){
+class PokemonListFragment : Fragment(),PokemonListClickListener{
     val viewModel = PokemonListViewModel()
 lateinit var recyclerView : RecyclerView
     override fun onCreateView(
@@ -38,6 +39,15 @@ lateinit var recyclerView : RecyclerView
     }
 
     private fun showPokemonList(list: PagedList<PokemonListResponse.PokemonListItem>) {
-        recyclerView.adapter = PokemonListAdapter().apply { submitList(list) }
+        recyclerView.adapter = PokemonListAdapter(this).apply { submitList(list) }
+    }
+
+    private fun launchDetailsScreen(url : String){
+        activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, PokemonDetailsFragment.getInstance(url))?.addToBackStack(null)?.commit()
+        (activity as MainActivity).showBackButton()
+    }
+
+    override fun onPokemonClicked(url: String) {
+        launchDetailsScreen(url)
     }
 }

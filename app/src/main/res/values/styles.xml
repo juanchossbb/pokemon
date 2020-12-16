@@ -13,4 +13,26 @@
         <item name="android:textColor">@color/secondary</item>
     </style>
 
+    <style name="TextStyle.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="TextStyle.Detail">
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+    <style name="TextStyle.Detail.Title">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextStyle.Detail.Subtitle">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextStyle.Detail.Text">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
 </resources>

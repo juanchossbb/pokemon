@@ -1,6 +1,7 @@
 package com.guapiston.pokemon
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -19,8 +20,36 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
+                R.id.navigation_pokemon, R.id.navigation_berries))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        hideBackButton()
+    }
+    private fun hideBackButton(){
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+            setHomeButtonEnabled(false)
+        }
+    }
+
+    fun showBackButton(){
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+           android.R.id.home -> {
+               onBackPressed()
+               hideBackButton()
+           }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
