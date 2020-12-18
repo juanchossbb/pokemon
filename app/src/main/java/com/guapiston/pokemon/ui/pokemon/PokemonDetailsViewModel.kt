@@ -13,9 +13,7 @@ class PokemonDetailsViewModel : ViewModel(){
     val detailsLiveData = MutableLiveData<PokemonDetailResponse>()
     fun getProductDetails(url : String) {
         CoroutineScope(Dispatchers.IO).launch {
-            service.getPokemonDetails(url).subscribe ({
-                detailsLiveData.postValue(it)
-            },{it.printStackTrace()})
+            detailsLiveData.postValue(service.getPokemonDetails(url).blockingFirst())
         }
     }
 }

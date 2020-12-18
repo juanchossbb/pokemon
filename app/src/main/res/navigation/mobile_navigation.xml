@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_berries"
-        android:name="com.guapiston.pokemon.ui.dashboard.DashboardFragment"
+        android:name="com.guapiston.pokemon.ui.berries.BerriesListFragment"
         android:label="@string/title_berries"
         tools:layout="@layout/fragment_dashboard" />
 

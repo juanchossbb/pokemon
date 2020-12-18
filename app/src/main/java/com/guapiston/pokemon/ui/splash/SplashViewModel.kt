@@ -14,9 +14,7 @@ class SplashViewModel : ViewModel(){
 
     fun loadInitialPokemon() {
         CoroutineScope(Dispatchers.IO).launch {
-            service.getAvailablePokemon(0, 20).subscribe({
-                pokemonLiveData.postValue(it)
-            }, { it.printStackTrace() })
+            pokemonLiveData.postValue(service.getAvailablePokemon(0,20).blockingFirst())
         }
     }
 }

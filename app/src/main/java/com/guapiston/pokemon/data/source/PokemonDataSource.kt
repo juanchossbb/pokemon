@@ -24,7 +24,7 @@ class PokemonDataSource : PositionalDataSource<PokemonListResponse.PokemonListIt
         callback.onResult(loadRangeInternal(0,params.pageSize), params.requestedStartPosition)
     }
 
-    fun loadRangeInternal(start : Int, count : Int) : List<PokemonListResponse.PokemonListItem>{
+    private fun loadRangeInternal(start : Int, count : Int) : List<PokemonListResponse.PokemonListItem>{
 
         if (PokemonApp.connectedToInternet()) {
             database.pokemonDao().insertPokemonList(
