@@ -43,11 +43,17 @@ lateinit var recyclerView : RecyclerView
     }
 
     private fun launchDetailsScreen(url : String){
-        activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, PokemonDetailsFragment.getInstance(url))?.addToBackStack(null)?.commit()
-        (activity as MainActivity).showBackButton()
+        (activity as MainActivity)?.apply {
+            launchPokemonDetailsFragment(url)
+            showBackButton()
+        }
     }
 
     override fun onPokemonClicked(url: String) {
         launchDetailsScreen(url)
+    }
+
+    companion object{
+        val instance = PokemonListFragment()
     }
 }

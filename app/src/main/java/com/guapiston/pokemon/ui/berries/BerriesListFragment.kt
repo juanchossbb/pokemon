@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guapiston.pokemon.R
 import com.guapiston.pokemon.data.model.BerriesListResponse
+import com.guapiston.pokemon.ui.pokemon.PokemonListFragment
 
 class BerriesListFragment : Fragment(), BerryClickListener{
 lateinit var recyclerView: RecyclerView
@@ -41,6 +42,10 @@ lateinit var recyclerView: RecyclerView
 
     private fun showBerryList(list : PagedList<BerriesListResponse.Berry>){
         recyclerView.adapter = BerriesListAdapter(this).apply { submitList(list) }
+    }
+
+    companion object{
+        val instance = BerriesListFragment()
     }
 }
 

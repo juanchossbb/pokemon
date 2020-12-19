@@ -8,6 +8,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.guapiston.pokemon.ui.berries.BerriesListFragment
+import com.guapiston.pokemon.ui.pokemon.PokemonDetailsFragment
+import com.guapiston.pokemon.ui.pokemon.PokemonListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,12 +26,38 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_pokemon, R.id.navigation_berries))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.navigation_pokemon ->{
+                    launchPokemonListFragment()
+                    true
+                }
+                R.id.navigation_berries -> {
+                    launchBerriesListFragment()
+                    true
+                }
+                else ->false
+            }
+        }
     }
 
     override fun onStart() {
         super.onStart()
         hideBackButton()
     }
+
+    private fun launchPokemonListFragment(){
+        supportFragmentManager.beginTransaction().replace(R.id.container,PokemonListFragment.instance).commit()
+    }
+
+    private fun launchBerriesListFragment(){
+        supportFragmentManager.beginTransaction().replace(R.id.container,BerriesListFragment()).commit()
+    }
+
+    fun launchPokemonDetailsFragment(url : String){
+        supportFragmentManager?.beginTransaction()?.add(R.id.container, PokemonDetailsFragment.getInstance(url))?.addToBackStack(null)?.commit()
+    }
+
     private fun hideBackButton(){
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(false)
