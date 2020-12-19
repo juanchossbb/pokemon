@@ -1,8 +1,11 @@
-# Prueba para XperGroup
+# Prueba para XpertGroup
 Por Juan Hurtado https://www.linkedin.com/in/juanchossb
 
-#Arquitectura
+# Arquitectura
 Se uso un patron de Arquitectura MVVM, donde el View Model expone un strem de datos a La vista y esta decide que informacion mostrar una vez recibidos
+
+# Persistencia
+Usamos Room y una base de datos MySQLite para persistir datos de la app despues de descargarlos desde el servidos con Retrofit. Los datos son mostrados de manera paginada en las listas, cada paginacion hace un llamado a la base de datos local y obtiene solo las entradas necesarias
 
 # Paquetes
 
